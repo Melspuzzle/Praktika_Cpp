@@ -1,0 +1,30 @@
+Entwickeln Sie dazu ein Projekt P5, mit dessen Hilfe auf der Basis der Objektorientierten
+Programmierung Rechenoperationen zu den vier Grundrechenarten durchgeführt werden können.
+Definieren Sie dazu in einer Header-Datei eine Klasse Taschenrechner, die als Elementfunktionen
+die Methoden Addition, Subtraktion, Multiplikation und Division enthält. Die
+Methoden sollen – wie der Name schon sagt – jeweils eine Addition, Subtraktion, Multiplikation
+und Division zweier Zahlen durchführen. Die zu verrechnenden Zahlen sowie das Ergebnis
+der entsprechenden Operation sollen als Attribute der Klasse Taschenrechner gekapselt
+sein und sind somit mit dem Zugriffsrecht private zu deklarieren. Für die Initialisierung mit
+Nullwerten soll in dieser Aufgabe eine init()-Methode genutzt werden. Für Ihre Klasse
+Taschenrechner ist ein entsprechendes Klassendiagramm zu erstellen, welches Teil der
+Lösung der Aufgabe ist!
+Für die Berechnung sollen nur float-Werte zugelassen sein, die zu verrechnenden Größen
+(z.B. die Summanden bei der Addition) und das Ergebnis müssen dann ebenso vom Datentyp
+float sein.
+Für die Initialisierung der Attribute mit Nullwerten, das Setzen der Parameter (Werte und
+Operation), die Durchführung der Berechnung und das Abrufen des Ergebnisses sind
+ebenfalls geeignete Methoden zu entwerfen.
+In main wird der Benutzer zuerst aufgefordert die zu verarbeitenden Werte, mit denen die
+entsprechende Operation ausgeführt werden soll, einzugeben. Danach wird er aufgefordert
+den Typ der Operation – Addition, Subtraktion, Multiplikation oder Division – als char-
+Zeichen anzugeben. Für die Operationen sind jeweils geeignete private Methoden zu erstellen.
+Das Ergebnis der Operation wird anschließend auf dem Bildschirm dargestellt, die Ausgabe
+erfolgt in main.
+Um eine optimale Datenkapselung zu gewährleisten sind alle Attribute und die meisten Methoden
+als privat zu deklarieren. Lediglich die Methoden, die eine Schnittstellenfunktion
+erfüllen – Initialisierung der Attribute, besetzen der Eingabeinformationen sowie Auslesen
+des Ergebnisses, dürfen als öffentliche Methoden deklariert werden.
+Das Abfangen von Fehleingaben soll in main erfolgen (nicht Teil der Klasse Taschenrechner).
+Das Programm soll mehrfach durchlaufen werden können. Das Projekt soll modular
+entwickelt werden.
