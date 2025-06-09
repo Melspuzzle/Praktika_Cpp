@@ -1,0 +1,22 @@
+Entwickeln Sie ein Projekt P6, das auf der Basis der Objektorientierten Programmierung zwei Grundrechenarten (Addition und Subtraktion)
+für komplexe Zahlen durchführt.
+
+Definieren Sie dazu eine Klasse Komplexe_Zahl, die zwei private Attribute vom Datentyp float enthält, 
+die den Real- bzw. Imaginärteil einer komplexen Zahl repräsentieren. Im Gegensatz zu dem bisherigen
+Vorgehen sollen jedoch hier die Berechnungen nicht in den speziellen Methoden Addition() und Subtraktion() 
+erfolgen; es sind vielmehr für diese beiden Rechenoperationen die Operatoren + und - zu definieren (überladen). 
+D.h. die Klasse Komplexe_Zahl enthält spezielle Operatormethoden, die die entsprechenden Rechen-operationen (+ und -) für komplexe Zahlen ausführen.
+
+Weiterhin soll die Klasse neben dem Konstruktor für die Initialisierung mit Nullwerten, wiederum lediglich über eine minimale Anzahl 
+von öffentlichen Methoden verfügen.
+
+In main gibt der Nutzer zwei komplexe Zahlen sowie den Typ der Operation, d.h. Addition oder Subtraktion, ein. Das Ergebnis der 
+entsprechenden komplexen Rechnung soll auf dem Monitor dargestellt werden. Die Ausgabe erfolgt in main.
+
+Für die Berechnung sind die erstellten Operatormethoden zu benutzen d.h., die Zuweisung hat in folgender Form zu erfolgen:
+Komplexe_Zahl z1, z2, z3;
+z3 = z1 + z2;
+z3 = z1 - z2;
+
+Das Programm soll mehrfach durchlaufen werden können. Entwickeln Sie vor der Programmerstellung das Klassendiagramm.
+Erweitern Sie Ihr Programm danach für die Multiplikation und Division.
