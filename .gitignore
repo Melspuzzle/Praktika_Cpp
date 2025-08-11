@@ -23,3 +23,10 @@ p5/CMakeLists.txt
 p5/CMakeLists.txt
 p6/CMakeLists.txt
 p5/CMakeLists.txt
+
+# macOS specific
+.DS_Store
+
+# Build artifacts
+p6/p6_oop
+p6/p6_oop.dSYM/

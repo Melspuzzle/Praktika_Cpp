@@ -1,115 +1,116 @@
 #include "komplexeZahl.h"
 #include <iostream>
-#include <stdio.h>
+#include <string>
+#include <limits>
 
-void calculator(string input);
-bool checkIfFloat(string *p_input);
+float getFloatInput();
+void calculator();
+
 int main(void)
 {
     string input;
     string yes = "y";
     string no = "n";
-    bool status = false;
-    cout << "Moechtest du eine Berechnung von zwei komplexen Zahlen durchfuehren? "
-         << yes << " / " << no << endl;
-    cin >> input;
-    cin.clear();
 
-    if (input == yes)
+    while (true)
     {
-        status = true;
+        cout << "Moechtest du eine Berechnung von zwei komplexen Zahlen durchfuehren? ("
+             << yes << "/" << no << ")" << endl;
+        cin >> input;
 
-        while (status == true)
-        { // mehrfache Ausführung von Berechnungen möglich
-            // Programmstart implementieren
-            calculator(input);
-
-            cout << "Moechtest du erneut eine Berechnung vornehmen? " << yes << " / "
-                 << no << endl;
-            cin >> input;
-            if (input == no)
-            {
-                status = false;
-                cout << "Alles klar, Tschuess!" << endl;
-                getchar();
-                return (0);
-            }
+        // Eindeutige Abfrage auf 'y'
+        if (input == yes)
+        {
+            calculator();
         }
+        // Eindeutige Abfrage auf 'n'
+        else if (input == no)
+        {
+            cout << "Alles klar, Tschuess!" << endl;
+            break;
+        }
+        // Alles andere ist eine ungültige Eingabe
+        else
+        {
+            cout << "Keine gueltige Eingabe, bitte nur '" << yes << "' oder '" << no << "' verwenden." << endl;
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    else if (input == no)
-    {
-        cout << "Alles klar, Tschuess!" << endl;
-        getchar();
-        return (0);
-    }
-    else
-    {
-        cout << "Keine gueltige Eingabe, starte das Programm erneut." << endl;
-        getchar();
-        return (0);
-    }
+
+    return 0;
 }
 
-void calculator(string input)
+void calculator()
 {
-    // initialisiere Objekt
     komplexeZahl z1, z2, z3;
-    float resultKom, resultReal;
     char calcMethode;
-    string *p_input = &input;
-    cout << "Gebe den realen Teil der ersten Zahl fuer die Berechnung ein" << endl;
-    while (!checkIfFloat(p_input))
+    cout << "Gebe den realen Teil der ersten Zahl ein:" << endl;
+    z1.setRealterTeil(getFloatInput());
+
+    cout << "Gebe den imaginaeren Teil der ersten Zahl ein:" << endl;
+    z1.setKomplexerTeil(getFloatInput());
+
+    // Schleife für die Eingabe der zweiten Zahl, um Division durch Null zu verhindern
+    while (true)
     {
+        cout << "Gebe den realen Teil der zweiten Zahl ein:" << endl;
+        z2.setRealterTeil(getFloatInput());
+
+        cout << "Gebe den komplexen bzw. imaginaeren Teil der zweiten Zahl ein:" << endl;
+        z2.setKomplexerTeil(getFloatInput());
+
+        cout << "Mit welchem Operator moechtest du rechnen? [+, -, /, *]" << endl;
+        cin >> calcMethode;
+
+        if (calcMethode == '/' && z2.getRealterTeil() == 0 && z2.getKomplexerTeil() == 0)
+        {
+            cout << "Fehler: Division durch Null ist nicht erlaubt. Bitte gib die zweite Zahl erneut ein." << endl;
+            // Die Schleife wird fortgesetzt, um eine neue Eingabe zu erhalten
+        }
+        else
+        {
+            break;
+        }
     }
-    z1.setRealterTeil(stof(*p_input));
-    cout << "Gebe den komplexen bzw. imaginaeren Teil der ersten Zahl fuer die Berechnung ein" << endl;
-    while (!checkIfFloat(p_input))
-    {
-    }
-    z1.setKomplexerTeil(stof(*p_input));
-    cout << "Gebe den realen Teil der zweiten Zahl fuer die Berechnung ein" << endl;
-    while (!checkIfFloat(p_input))
-    {
-    }
-    z2.setRealterTeil(stof(*p_input));
-    cout << "Gebe den komplexen bzw. imaginaeren Teil der zweiten Zahl fuer die Berechnung ein" << endl;
-    while (!checkIfFloat(p_input))
-    {
-    }
-    z2.setKomplexerTeil(stof(*p_input));
-    cout << "Mit welchem Operator moechtest du rechnen? + - / * " << endl;
-    cin >> calcMethode;
-    // calculation
+
     switch (calcMethode)
     {
     case '+':
-        z3 = z1 + z2; // Funktionsaufruf durch + von z1
+        z3 = z1 + z2;
         break;
-
     case '-':
-        z3 = z1 - z2; // Funktionsaufruf durch - von z2
+        z3 = z1 - z2;
+        break;
+    case '/':
+        z3 = z1 / z2;
+        break;
+    case '*':
+        z3 = z1 * z2;
         break;
     default:
-        cout << "Falscher Eingabewert, Berechnung nicht möglich" << endl;
+        cout << "Keine Operator Eingabe, Berechnung nicht möglich." << endl;
+        return;
     }
-    resultKom = z3.getKomplexerTeil();
-    resultReal = z3.getRealterTeil();
+    cout << "Dein Ergebnis lautet: " << z3.getRealterTeil() << " + (" << z3.getKomplexerTeil() << ")i" << endl
+         << endl;
+}
 
-    cout << "Dein Ergebnis lautet: Realter Teil:" << resultReal << " Komplexer Teil:" << resultKom << "" << endl;
-    return;
-};
-
-bool checkIfFloat(string *p_input)
+// input eingabe auf float checken
+float getFloatInput()
 {
-    try
+    float number;
+    while (!(cin >> number))
     {
-        cin >> *p_input;
-        float tmpFloat = stof(*p_input);
-        return true;
+        cout << "Ungueltige Eingabe. Bitte eine gueltige Zahl eingeben:" << endl;
+        cin.clear();
+        // Den restlichen Inhalt der Zeile aus dem Eingabepuffer verwerfen
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        /* Ohne cin.ignore(...) würde die while-Schleife endlos weiterlaufen, da sie bei jedem Durchlauf erneut versuchen
+        würde, dieselbe ungültige Eingabe zu lesen. Diese Zeile sorgt dafür, dass der fehlerhafte Rest der Zeile aus dem
+        Puffer "ignoriert" oder "verworfen" wird, sodass der Benutzer eine neue Eingabe tätigen kann. Die
+        <limits>-Bibliothek wird verwendet, um sicherzustellen, dass der gesamte Puffer geleert wird, unabhängig davon,
+        wie viele Zeichen eingegeben wurden.*/
     }
-    catch (const invalid_argument)
-    {
-        cout << "Bitte gebe eine gueltige Zahl ein" << endl;
-        return false;
-    }
-};
+    return number;
+}

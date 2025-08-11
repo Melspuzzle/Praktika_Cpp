@@ -17,4 +17,6 @@ public:
     float getRealterTeil();
     komplexeZahl operator+(const komplexeZahl &);
     komplexeZahl operator-(const komplexeZahl &);
+    komplexeZahl operator*(const komplexeZahl &);
+    komplexeZahl operator/(const komplexeZahl &);
 };
